@@ -60,29 +60,22 @@ wm$found
 
 ``` r
 citation ("wikimapR")
-#> Warning in citation("wikimapR"): no date field in DESCRIPTION file of
-#> package 'wikimapR'
-#> Warning in citation("wikimapR"): could not determine year for 'wikimapR'
-#> from package DESCRIPTION file
 #> 
 #> To cite package 'wikimapR' in publications use:
 #> 
-#>   person and comment = c) (NA). wikimapR: Import 'Wikimapia' Data
-#>   as Simple Features via API. R package version 0.1.0.
+#>   Egor Kotov (2018). wikimapR: Import Wikimapia Data as Simple
+#>   Features via API. R package version 0.1.0.
 #>   http://github.com/e-kotov/wikimapR/
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {wikimapR: Import 'Wikimapia' Data as Simple Features via API},
-#>     author = {{person} and comment = c)},
+#>     title = {wikimapR: Import Wikimapia Data as Simple Features via API},
+#>     author = {Egor Kotov},
+#>     year = {2018},
 #>     note = {R package version 0.1.0},
 #>     url = {http://github.com/e-kotov/wikimapR/},
 #>   }
-#> 
-#> ATTENTION: This citation information has been auto-generated from
-#> the package DESCRIPTION file and may need manual editing, see
-#> 'help("citation")'.
 ```
 
 ### License
