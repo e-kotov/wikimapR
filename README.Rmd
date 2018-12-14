@@ -1,0 +1,87 @@
+---
+title: "wikimapR, an R package for importing Wikimapia data as Simple Features via API"
+keywords: "wikimapia, API, sf, Simple Features, R"
+output: github_document
+# output:
+#   rmarkdown::html_vignette:
+#     self_contained: no
+# 
+#   md_document:
+#     variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r opts, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = TRUE,
+  message = TRUE,
+  width = 120,
+  comment = "#>",
+  fig.retina = 2,
+  fig.path = "README-"
+)
+```
+
+
+`wikimapR` is an R package for accessing the raw vector data from Wikimapia via official [Wikimapia API](http://wikimapia.org/api). Map data can be returned either as
+[Simple Features (`sf`)](https://cran.r-project.org/package=sf) objects or R `lists`.
+
+
+### Installation
+
+To install:
+```{r, eval=FALSE}
+# Install the development version
+# install.packages("devtools")
+devtools::install_github("e-kotov/wikimapR")
+```
+
+To load the package and check the version:
+```{r, eval=TRUE}
+library(wikimapR)
+packageVersion("wikimapR")
+```
+
+### Usage
+
+#### Choose a bbox
+
+Have a look at [https://boundingbox.klokantech.com](https://boundingbox.klokantech.com) and choose a bounding box. For example: `37.322997,55.485442,37.962686,55.981041` for Moscow and it's surroundings.
+
+```{r eval=TRUE}
+bbox <- c(37.322997,55.485442,37.962686,55.981041)
+# bbox <- c(37.287362,55.492401,37.939676,56.001)
+# bbox <- c(37.3190992757524,55.4878936531495,37.3839052968042,55.5246736421731)
+```
+
+#### Get the number of objects in this bounding box
+
+```{r eval=TRUE}
+wm <- wm_get_from_bbox(x = bbox, get_location = F)
+```
+
+```{r eval=TRUE}
+wm$found
+```
+
+
+### Citation
+
+```{r}
+citation ("wikimapR")
+```
+
+### License
+
+The MIT License (MIT) + License File
+
+Copyright © 2018 Egor Kotov
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
