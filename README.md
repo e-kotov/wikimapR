@@ -6,8 +6,15 @@ via API
 
 `wikimapR` is an R package for accessing the raw vector data from
 Wikimapia via official [Wikimapia API](http://wikimapia.org/api). Map
-data can be returned either as [Simple Features
-(`sf`)](https://cran.r-project.org/package=sf) objects or R `lists`.
+data is returned as [Simple Features
+(`sf`)](https://cran.r-project.org/package=sf) objects with some of the
+object details included as nested `lists`.
+
+**This package is at a VERY alpha stage. Provided ‘as is’. Use with
+caution.**
+
+You may also want to try [a similar package for
+Python](https://github.com/plandex/wikimapia-api-py).
 
 ### Installation
 
@@ -104,7 +111,7 @@ subdivision using precise metric, but this will do fine for now.
 Just to be sure that every bounding box that we generated has \<= 10 000
 objects, let us query all the bounding boxes. For the current example
 with 12 it will take about 6 minutes, as with “example” API key the
-cooldown is about 30
+cool-down is about 30
 seconds.
 
 ``` r
@@ -133,7 +140,7 @@ hist(n_by_bbox)
 
 Since the maximum is well within 10 000, we can proceed to collect the
 objects IDs and then download attributes for individual features. We
-have to downlaod the detailed objects features one-by-one as
+have to download the detailed objects features one-by-one as
 [`box`](http://wikimapia.org/api#oldbox) API only returns object ID,
 name and URL. So the strategy for getting all object details is to make
 a list of object IDs using [`box`](http://wikimapia.org/api#oldbox) API
@@ -247,10 +254,10 @@ str(wm_objects$details[[1]], max.level = 1)
 ### To-Do List
 
   - Rewrite `subdivide_bbox()` to accept metric values for bbox
-    dimensions (not critical, but may be useful for outher projects)
+    dimensions (not critical, but may be useful for other projects)
 
   - Create a few more helper functions to abstract the user from the
-    calls to `purrr` for simple things like getting the nubmer of found
+    calls to `purrr` for simple things like getting the number of found
     objects, or for getting number of objects per bounding box (see
     examples above in the Usage section)
 
