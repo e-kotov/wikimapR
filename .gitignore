@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+README_cache/
+.DS_Store
+*.Rapp.history
