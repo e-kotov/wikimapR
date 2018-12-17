@@ -6,8 +6,8 @@ Authors@R: c(
     person("Egor", "Kotov", email = "kotov.egor@gmail.com",
                   role = c("aut", "cre"), comment = c(ORCID = "0000-0001-6690-5345")))
 Maintainer: Egor Kotov <kotov.egor@gmail.com>
-Description: Download and import of 'Wikimapia' data as 'sf'
-    objects.  'Wikimapia' data are extracted via the 'Wikimapia' API and
+Description: Download and import of Wikimapia data as 'sf'
+    objects.  Wikimapia data is retrieved via the Wikimapia API and
     converted to `sf` objects retaining all recevied fields.
 Date: 2018-12-12
 Affiliation: National Research University Higher School of Economics
@@ -16,9 +16,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
+    dplyr,
+    purrr,
     httr,
     data.table,
-    sf
+    sf,
+    rlist
 URL: http://github.com/e-kotov/wikimapR/
 BugReports: https://github.com/e-kotov/wikimapR/issues
 RoxygenNote: 6.1.1
