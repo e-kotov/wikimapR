@@ -21,6 +21,7 @@ Imports:
     httr,
     data.table,
     sf,
+    lwgeom,
     rlist
 URL: http://github.com/e-kotov/wikimapR/
 BugReports: https://github.com/e-kotov/wikimapR/issues
