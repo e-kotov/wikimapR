@@ -237,7 +237,7 @@ names(wm_objects)
 
 ##### Most of the details are currently in a nested list for every object
 
-You can [purrr](https://github.com/tidyverse/purrr) and/or
+You can use [purrr](https://github.com/tidyverse/purrr) and/or
 [rlist](https://github.com/renkun-ken/rlist) packages to pull any of the
 details from these nested lists.
 
