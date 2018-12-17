@@ -13,7 +13,7 @@ converted to `sf` objects retaining all recevied fields.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://github.com/e-kotov/wikimapR/}
+  \item \url{https://github.com/e-kotov/wikimapR/}
   \item Report bugs at \url{https://github.com/e-kotov/wikimapR/issues}
 }
 

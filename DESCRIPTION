@@ -23,6 +23,6 @@ Imports:
     sf,
     lwgeom,
     rlist
-URL: http://github.com/e-kotov/wikimapR/
+URL: https://github.com/e-kotov/wikimapR/
 BugReports: https://github.com/e-kotov/wikimapR/issues
 RoxygenNote: 6.1.1

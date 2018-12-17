@@ -285,7 +285,7 @@ citation ("wikimapR")
 #> 
 #>   Egor Kotov (2018). wikimapR: Import Wikimapia Data as Simple
 #>   Features via API. R package version 0.1.0.
-#>   http://github.com/e-kotov/wikimapR/
+#>   https://github.com/e-kotov/wikimapR/
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -294,7 +294,7 @@ citation ("wikimapR")
 #>     author = {Egor Kotov},
 #>     year = {2018},
 #>     note = {R package version 0.1.0},
-#>     url = {http://github.com/e-kotov/wikimapR/},
+#>     url = {https://github.com/e-kotov/wikimapR/},
 #>   }
 ```
 
