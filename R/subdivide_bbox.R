@@ -10,12 +10,14 @@
 #'
 #' @param return_bbox_or_sf object type to retun. If set to default "bbox", returns objects of type `bbox`, "sf" - returns `sf polygons` (good for plotting), "both" - returns a list of length 2 with both `bbox` and `sf` named accorgingly.
 #'
+#' @param out_crs EPSG code or proj4 string for the desired coordinate reference system of the output bounding box coordinates
+#'
 #' @import sf dplyr purrr
 #'
 #' @return an `sf` object grid with consequtive IDs. Also prints out a message with the number of bounding boxes and the average cell dimensions in meters.
 #'
 #' @export
-subdivide_bbox <- function(x, bbox_cell_size = 0.045, return_bbox_or_sf = "bbox")
+subdivide_bbox <- function(x, bbox_cell_size = 0.045, return_bbox_or_sf = "bbox", out_crs = 4326)
 {
   # x <- bbox # remove this
   # create corner coords
@@ -30,7 +32,8 @@ subdivide_bbox <- function(x, bbox_cell_size = 0.045, return_bbox_or_sf = "bbox"
     matrix(ncol = 2, byrow = T) %>%
     list() %>%
     sf::st_polygon() %>%
-    sf::st_sfc(crs = 4326)
+    sf::st_sfc(crs = 4326) %>%
+    sf::st_transform(crs = out_crs)
 
   # create a grid object of type sf with consequtive IDs
   bbox_grid_sf <- sf::st_make_grid(bbox_polygon, cellsize = bbox_cell_size) %>%
