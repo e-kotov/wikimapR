@@ -32,13 +32,13 @@ subdivide_bbox <- function(x, bbox_cell_size = 0.045, return_bbox_or_sf = "bbox"
     matrix(ncol = 2, byrow = T) %>%
     list() %>%
     sf::st_polygon() %>%
-    sf::st_sfc(crs = 4326) %>%
-    sf::st_transform(crs = out_crs)
+    sf::st_sfc(crs = 4326)
 
   # create a grid object of type sf with consequtive IDs
   bbox_grid_sf <- sf::st_make_grid(bbox_polygon, cellsize = bbox_cell_size) %>%
     sf::st_sf() %>%
-    dplyr::mutate(fid = seq(from = 1, to = nrow(.), by = 1))
+    dplyr::mutate(fid = seq(from = 1, to = nrow(.), by = 1)) %>%
+    sf::st_transform(crs = out_crs)
 
   # get the bounding boxes of the cells in the grid object
   bbox_grid_bbox <- purrr::map(.x = bbox_grid_sf$geometry, .f = ~ sf::st_bbox(.x) )
