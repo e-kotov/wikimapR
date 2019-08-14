@@ -4,14 +4,17 @@
 \alias{subdivide_bbox}
 \title{Subdivide large bounding box into smaller ones}
 \usage{
-subdivide_bbox(x, bbox_cell_size = 0.045, return_bbox_or_sf = "bbox")
+subdivide_bbox(x, bbox_cell_size = 0.045, return_bbox_or_sf = "bbox",
+  out_crs = 4326)
 }
 \arguments{
 \item{x}{a numeric vector of length four, with xmin, ymin, xmax and ymax values; or a `bbox` object that is an output of \link[sf]{st_bbox}. The values must be in WGS 84 (EPSG 4326)}
 
-\item{bbox_cell_size}{bounding box cell size is in degrees (need to somehow fix that to work with meters across the globe). Default of 0.045 is reasonably large, roughly equivalent to 2845x5010 meters.}
+\item{bbox_cell_size}{bounding box cell size is in degrees (need to somehow fix that to work with meters across the globe). Default of 0.045 is reasonably large, roughly equivalent to 2845x5010 meters. The grid will be created in WGS84 coordinate reference system and then transformed into CRS set by `out_crs`, which is also WGS84 by default (EPSG:4326).}
 
 \item{return_bbox_or_sf}{object type to retun. If set to default "bbox", returns objects of type `bbox`, "sf" - returns `sf polygons` (good for plotting), "both" - returns a list of length 2 with both `bbox` and `sf` named accorgingly.}
+
+\item{out_crs}{EPSG code or proj4 string for the desired coordinate reference system of the output bounding box coordinates. The grid will be created in WGS84 coordinate reference system and then transformed into CRS set by `out_crs`. Default value is 4326 for WGS84.}
 }
 \value{
 an `sf` object grid with consequtive IDs. Also prints out a message with the number of bounding boxes and the average cell dimensions in meters.

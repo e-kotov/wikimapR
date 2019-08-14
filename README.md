@@ -31,7 +31,7 @@ To load the package and check the version:
 ``` r
 library(wikimapR)
 packageVersion("wikimapR")
-#> [1] '0.1.0'
+#> [1] '0.1.1'
 ```
 
 ### Usage
@@ -59,7 +59,7 @@ wm <- wm_get_from_bbox(x = bbox, get_location = FALSE, meta_only = TRUE)
 #> wikimapia.org/api?action=create_key .
 # wm <- wm_get_from_bbox(x = bbox, get_location = F, wm_api_key = "XXXXXXX", object_count_only = T) # use with your own API key to perform more frequent requests and avoid the warning message
 wm$found
-#> [1] 20339
+#> [1] 21015
 ```
 
 Now we know how many objects we have in the bounding box.
@@ -74,12 +74,11 @@ bounding box that you have into smaller bounding boxes with a maximum of
 
 `subdivide_bbox()` subdivides a large bounding box into smaller ones and
 returns `sf polygons`, or `bbox` objects or both. It is good for large
-areas with defaults tuned to cities like
-Moscow.
+areas with defaults tuned to cities like Moscow.
 
 ``` r
 small_bboxes <- subdivide_bbox(x = bbox, bbox_cell_size = 0.1, return_bbox_or_sf = "both")
-#> Linking to GEOS 3.6.1, GDAL 2.1.3, PROJ 4.9.3
+#> Linking to GEOS 3.7.2, GDAL 2.4.1, PROJ 6.1.1
 #> 12 bounding boxes created with approximate cell size of 6698x11129 meters.
 plot(small_bboxes$sf$geometry)
 ```
@@ -111,8 +110,7 @@ subdivision using precise metric, but this will do fine for now.
 Just to be sure that every bounding box that we generated has \<= 10 000
 objects, let us query all the bounding boxes. For the current example
 with 12 it will take about 6 minutes, as with “example” API key the
-cool-down is about 30
-seconds.
+cool-down is about 30 seconds.
 
 ``` r
 pb <- dplyr::progress_estimated(length(small_bboxes$bbox)) # set the progress bar using dplyr
@@ -126,8 +124,7 @@ objects_in_bboxes <- small_bboxes$bbox %>% purrr::map( ~ {
 ```
 
 Now we look at the histogram of the number of objects in the small
-bounding boxes and the maximum
-value:
+bounding boxes and the maximum value:
 
 ``` r
 n_by_bbox <- objects_in_bboxes %>% purrr::map_int(~ .x$meta$found) # extract the number of found objects for every bounding box
@@ -284,7 +281,7 @@ citation ("wikimapR")
 #> To cite package 'wikimapR' in publications use:
 #> 
 #>   Egor Kotov (2018). wikimapR: Import Wikimapia Data as Simple
-#>   Features via API. R package version 0.1.0.
+#>   Features via API. R package version 0.1.1.
 #>   https://github.com/e-kotov/wikimapR/
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -293,7 +290,7 @@ citation ("wikimapR")
 #>     title = {wikimapR: Import Wikimapia Data as Simple Features via API},
 #>     author = {Egor Kotov},
 #>     year = {2018},
-#>     note = {R package version 0.1.0},
+#>     note = {R package version 0.1.1},
 #>     url = {https://github.com/e-kotov/wikimapR/},
 #>   }
 ```
