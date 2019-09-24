@@ -25,6 +25,9 @@ knitr::opts_chunk$set(
 ```
 
 
+[![DOI](https://zenodo.org/badge/161494897.svg)](https://zenodo.org/badge/latestdoi/161494897)
+
+
 `wikimapR` is an R package for accessing the raw vector data from Wikimapia via official [Wikimapia API](http://wikimapia.org/api). Map data is returned as
 [Simple Features (`sf`)](https://cran.r-project.org/package=sf) objects with some of the object details included as nested `lists`.
 

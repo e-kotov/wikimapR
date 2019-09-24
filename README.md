@@ -4,6 +4,8 @@ via API
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+[![DOI](https://zenodo.org/badge/161494897.svg)](https://zenodo.org/badge/latestdoi/161494897)
+
 `wikimapR` is an R package for accessing the raw vector data from
 Wikimapia via official [Wikimapia API](http://wikimapia.org/api). Map
 data is returned as [Simple Features
@@ -59,7 +61,7 @@ wm <- wm_get_from_bbox(x = bbox, get_location = FALSE, meta_only = TRUE)
 #> wikimapia.org/api?action=create_key .
 # wm <- wm_get_from_bbox(x = bbox, get_location = F, wm_api_key = "XXXXXXX", object_count_only = T) # use with your own API key to perform more frequent requests and avoid the warning message
 wm$found
-#> [1] 21015
+#> [1] 21026
 ```
 
 Now we know how many objects we have in the bounding box.
@@ -78,7 +80,7 @@ areas with defaults tuned to cities like Moscow.
 
 ``` r
 small_bboxes <- subdivide_bbox(x = bbox, bbox_cell_size = 0.1, return_bbox_or_sf = "both")
-#> Linking to GEOS 3.7.2, GDAL 2.4.1, PROJ 6.1.1
+#> Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0
 #> 12 bounding boxes created with approximate cell size of 6698x11129 meters.
 plot(small_bboxes$sf$geometry)
 ```
