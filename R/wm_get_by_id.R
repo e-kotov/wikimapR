@@ -21,13 +21,10 @@
 #' @export
 wm_get_by_id <- function(x, language = "ru", wm_api_key = "example", data_blocks = "main,geometry,edit,location,attached,photos,comments,translate"){
 
-  pb <- dplyr::progress_estimated(length(x)) # set the progress bar using dplyr
-
   wm_objects <- x %>% purrr::map( ~ {
-    pb$tick()$print()
     dplyr::if_else(wm_api_key == "example", Sys.sleep(30), Sys.sleep(3) )
     wikimapR:::wm_get_by_id_single(x = .x, language = language, wm_api_key = wm_api_key, data_blocks = data_blocks)
-    }
+    }, .progress = T
   )
 
   wm_sf_all <- rlist::list.stack(wm_objects, fill = T, data.table = T) %>% st_sf()
