@@ -55,8 +55,12 @@ wm_get_from_bbox <- function(x, page = 1, n_per_page = 100, language = "ru", cat
 
   while( any(names(response_content) %in% "debug" == TRUE) ) {
     print(response_content$debug$message)
-    print("Waiting for cool down. You have probalby reached your API rate limit or using.")
-    dplyr::if_else(wm_api_key == "example", Sys.sleep(30), Sys.sleep(3) )
+    print("Waiting for cool down. You have probalby reached your API rate limit or using example API key.")
+    if( wm_api_key == "example" ) {
+      Sys.sleep(30)
+    } else {
+      Sys.sleep(3)
+    }
     print("Retrying...")
     response <- wikimapR:::safe_GET(request_url)
     response_content <- httr::content(response$result, as = "parsed", type = "application/json", encoding = "UTF-8")
@@ -69,7 +73,7 @@ wm_get_from_bbox <- function(x, page = 1, n_per_page = 100, language = "ru", cat
     return(meta_df)
   }
 
-  # process the recevied JSON
+  # process the received JSON
 
   ## get primary data about objects
   wm_objects_attributes <- data.frame(id = response_content$folder %>% purrr::map_chr(~ .x$id),
