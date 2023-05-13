@@ -12,6 +12,8 @@ data is returned as [Simple Features
 (`sf`)](https://cran.r-project.org/package=sf) objects with some of the
 object details included as nested `lists`.
 
+WARNING: the package does NOT work for now because of the breaking change in the Wikimapia API. More details at: https://github.com/e-kotov/wikimapR/issues/2
+
 **This package is at a VERY alpha stage. Provided ‘as is’. Use with
 caution.**
 
