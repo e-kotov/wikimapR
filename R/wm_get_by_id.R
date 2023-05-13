@@ -14,22 +14,30 @@
 #'
 #' @return `sf` objects with nested details.
 #'
-#' @import purrr dplyr
+#' @import dplyr progress
 #'
 #' @importFrom rlist list.stack
 #'
 #' @export
 wm_get_by_id <- function(x, language = "ru", wm_api_key = "example", data_blocks = "main,geometry,edit,location,attached,photos,comments,translate"){
 
-  wm_objects <- x %>% purrr::map( ~ {
+  pb <- progress::progress_bar$new(
+    format = "[:bar] :percent",
+    total = length(x),
+    clear = FALSE,
+  )
+
+  wm_objects <- list()
+  for(i in seq_along(x)) {
     if( wm_api_key == "example" ) {
       Sys.sleep(30)
     } else {
       Sys.sleep(3)
     }
-    wikimapR:::wm_get_by_id_single(x = .x, language = language, wm_api_key = wm_api_key, data_blocks = data_blocks)
-    }, .progress = T
-  )
+    pb$tick()
+    wm_objects[[i]] <- wikimapR:::wm_get_by_id_single(
+      x = x[[i]], language = language, wm_api_key = wm_api_key, data_blocks = data_blocks)
+  }
 
   wm_sf_all <- rlist::list.stack(wm_objects, fill = T, data.table = T) %>% st_sf()
 
@@ -80,7 +88,7 @@ wm_get_by_id_single <- function(x, language = "ru", wm_api_key = "example", data
 
   while( any(names(response_content) %in% "debug" == TRUE) ) {
     print(response_content$debug$message)
-    print("Waiting for cool down. You have probalby reached your API rate limit or using.")
+    print("Waiting for cool down. You have probalby reached your API rate limit or using 'example' API key.")
     if( wm_api_key == "example" ) {
       Sys.sleep(30)
     } else {

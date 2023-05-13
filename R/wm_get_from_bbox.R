@@ -55,7 +55,7 @@ wm_get_from_bbox <- function(x, page = 1, n_per_page = 100, language = "ru", cat
 
   while( any(names(response_content) %in% "debug" == TRUE) ) {
     print(response_content$debug$message)
-    print("Waiting for cool down. You have probalby reached your API rate limit or using example API key.")
+    print("Waiting for cool down. You have probalby reached your API rate limit or using 'example' API key.")
     if( wm_api_key == "example" ) {
       Sys.sleep(30)
     } else {
