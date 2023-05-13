@@ -12,7 +12,7 @@ data is returned as [Simple Features
 (`sf`)](https://cran.r-project.org/package=sf) objects with some of the
 object details included as nested `lists`.
 
-WARNING: the package does NOT work for now because of the breaking change in the Wikimapia API. More details at: https://github.com/e-kotov/wikimapR/issues/2
+WARNING: the package may NOT work for now because of the breaking change in the Wikimapia API. More details at: https://github.com/e-kotov/wikimapR/issues/2 . Using 'example' API key does not work, however everything seems to be working with your a private API key.
 
 **This package is at a VERY alpha stage. Provided ‘as is’. Use with
 caution.**
@@ -165,8 +165,7 @@ for.
 
 #### Get detailed data for Wikimapia objects
 
-Let’s take just 3 first objects for this example. It will take 1.5
-minutes to fetch them with all the details.
+Let's take just 3 first objects for this example. It will take 1.5 minutes to fetch them with all the details using the example API.
 
 ``` r
 short_list <- id_list[1:3]
