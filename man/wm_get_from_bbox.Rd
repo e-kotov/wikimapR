@@ -4,9 +4,16 @@
 \alias{wm_get_from_bbox}
 \title{Get Wikimapia Objects in a Bounding Box}
 \usage{
-wm_get_from_bbox(x, page = 1, n_per_page = 100, language = "ru",
-  category = NULL, get_location = TRUE, wm_api_key = "example",
-  meta_only = FALSE)
+wm_get_from_bbox(
+  x,
+  page = 1,
+  n_per_page = 100,
+  language = "ru",
+  category = NULL,
+  get_location = TRUE,
+  wm_api_key = "example",
+  meta_only = FALSE
+)
 }
 \arguments{
 \item{x}{a numeric vector of length 4, with xmin, ymin, xmax and ymax values; or a `bbox` object that is an output of \link[sf]{st_bbox}. The values must be in WGS 84 (EPSG 4326)}

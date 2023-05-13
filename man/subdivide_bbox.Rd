@@ -4,8 +4,12 @@
 \alias{subdivide_bbox}
 \title{Subdivide large bounding box into smaller ones}
 \usage{
-subdivide_bbox(x, bbox_cell_size = 0.045, return_bbox_or_sf = "bbox",
-  out_crs = 4326)
+subdivide_bbox(
+  x,
+  bbox_cell_size = 0.045,
+  return_bbox_or_sf = "bbox",
+  out_crs = 4326
+)
 }
 \arguments{
 \item{x}{a numeric vector of length four, with xmin, ymin, xmax and ymax values; or a `bbox` object that is an output of \link[sf]{st_bbox}. The values must be in WGS 84 (EPSG 4326)}

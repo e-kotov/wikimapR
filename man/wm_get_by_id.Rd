@@ -4,8 +4,12 @@
 \alias{wm_get_by_id}
 \title{Get Wikimapia Objects by ID}
 \usage{
-wm_get_by_id(x, language = "ru", wm_api_key = "example",
-  data_blocks = "main,geometry,edit,location,attached,photos,comments,translate")
+wm_get_by_id(
+  x,
+  language = "ru",
+  wm_api_key = "example",
+  data_blocks = "main,geometry,edit,location,attached,photos,comments,translate"
+)
 }
 \arguments{
 \item{x}{a numeric or characted vector of length 1 with Wikimapia object ID to fetch. You can get a list of objects to fetch using \link[wikimapR]{wm_get_from_bbox}}
