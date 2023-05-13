@@ -22,7 +22,11 @@
 wm_get_by_id <- function(x, language = "ru", wm_api_key = "example", data_blocks = "main,geometry,edit,location,attached,photos,comments,translate"){
 
   wm_objects <- x %>% purrr::map( ~ {
-    dplyr::if_else(wm_api_key == "example", Sys.sleep(30), Sys.sleep(3) )
+    if( wm_api_key == "example" ) {
+      Sys.sleep(30)
+    } else {
+      Sys.sleep(3)
+    }
     wikimapR:::wm_get_by_id_single(x = .x, language = language, wm_api_key = wm_api_key, data_blocks = data_blocks)
     }, .progress = T
   )
@@ -77,7 +81,11 @@ wm_get_by_id_single <- function(x, language = "ru", wm_api_key = "example", data
   while( any(names(response_content) %in% "debug" == TRUE) ) {
     print(response_content$debug$message)
     print("Waiting for cool down. You have probalby reached your API rate limit or using.")
-    dplyr::if_else(wm_api_key == "example", Sys.sleep(30), Sys.sleep(3) )
+    if( wm_api_key == "example" ) {
+      Sys.sleep(30)
+    } else {
+      Sys.sleep(3)
+    }
     print("Retrying...")
     response <- wikimapR:::safe_GET(request_url)
     response_content <- httr::content(response$result, as = "parsed", type = "application/json", encoding = "UTF-8")
