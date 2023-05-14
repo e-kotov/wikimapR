@@ -71,7 +71,7 @@ to 100 requests in 5 minutes.
 ``` r
 # change to your own key
 set_wikimapia_api_key("your_key")
-# clear_wikimapia_api_keys() # you can also clear your API key to use 'example' key instead
+# set_wikimapia_api_key("example) # use 'example' key with 1 request per 30 seconds rate limit
 ```
 
 #### Choose a bbox
