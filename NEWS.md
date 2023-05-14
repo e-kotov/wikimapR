@@ -8,7 +8,7 @@ each time
 
 ## Breaking changes
 
-- `wm_get_by_id()` changed the main argument from `x` to `ids`. This is more intuitive, since the function accepts vectors of length > 1. It is also nwo easier to debug the code. Help section fixed accordingly
+- `wm_get_by_id()` changed the main argument from `x` to `ids`. This is more intuitive, since the function accepts vectors of length > 1. It is also easier to debug the code now. Help section fixed accordingly
 
 ## Minor improvements and fixes
 
