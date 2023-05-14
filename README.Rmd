@@ -25,15 +25,17 @@ knitr::opts_chunk$set(
 ```
 
 
-[![DOI](https://zenodo.org/badge/161494897.svg)](https://zenodo.org/badge/latestdoi/161494897)
+[![DOI](https://zenodo.org/badge/161494897.svg)](https://zenodo.org/badge/latestdoi/161494897){target='_blank'}
 
 
-`wikimapR` is an R package for accessing the raw vector data from Wikimapia via official [Wikimapia API](http://wikimapia.org/api). Map data is returned as
-[Simple Features (`sf`)](https://cran.r-project.org/package=sf) objects with some of the object details included as nested `lists`.
+`wikimapR` is an R package for accessing the raw vector data from Wikimapia via official [Wikimapia API](http://wikimapia.org/api){target='_blank'}. Map data is returned as
+[Simple Features (`sf`)](https://cran.r-project.org/package=sf){target='_blank'} objects with some of the object details included as nested `lists`.
+
+WARNING: the package may NOT work for now because of the breaking change in the Wikimapia API. More details at [https://github.com/e-kotov/wikimapR/issues/2](https://github.com/e-kotov/wikimapR/issues/2){target='_blank'}. Using 'example' API key does not seem to work, however everything seems to be working with private API keys.
 
 **This package is at a VERY alpha stage. Provided 'as is'. Use with caution.**
 
-You may also want to try [a similar package for Python](https://github.com/plandex/wikimapia-api-py).
+You may also want to try [a similar package for Python](https://github.com/plandex/wikimapia-api-py){target='_blank'}.
 
 
 ### Installation
@@ -41,8 +43,8 @@ You may also want to try [a similar package for Python](https://github.com/pland
 To install:
 ```{r install_package, eval=FALSE}
 # Install the development version
-# install.packages("devtools")
-devtools::install_github("e-kotov/wikimapR")
+# install.packages("remotes")
+remotes::install_github("e-kotov/wikimapR")
 ```
 
 To load the package and check the version:
@@ -53,31 +55,39 @@ packageVersion("wikimapR")
 
 
 Load additional packages:
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(sf)
 library(magrittr)
 library(dplyr)
 library(purrr)
+library(progress)
 ```
 
 
 ### Usage
 
+Set your API key. There is the API key 'example' that's used by the testing page [https://wikimapia.org/api/?action=examples](https://wikimapia.org/api/?action=examples){target='_blank'}. It is limited to one request every 30 seconds. Get your own API key at [https://wikimapia.org/api/?action=my_keys](https://wikimapia.org/api/?action=my_keys){target='_blank'} to get up to 100 requests in 5 minutes.
+
+```{r set_api_key}
+# change to your own key
+set_wikimapia_api_key("your_key")
+# clear_wikimapia_api_keys() # you can also clear your API key to use 'example' key instead
+```
+
 #### Choose a bbox
 
-Have a look at [https://boundingbox.klokantech.com](https://boundingbox.klokantech.com) and choose a bounding box. For example: `49.990525,53.100579,50.37642,53.334931` for Samara and it's surroundings.
+Have a look at [https://boundingbox.klokantech.com](https://boundingbox.klokantech.com){target='_blank'} and choose a bounding box. For example: `-1.617122,53.764541,-1.467519,53.831568` for Leeds and it's surroundings.
 
 ```{r set_bbox, eval=TRUE}
-bbox <- c(49.990525,53.100579,50.37642,53.334931) # Samara
+bbox <- c(-1.669629,53.739816,-1.422465,53.869239) # Leeds
 ```
 
 #### Get the number of objects in this bounding box
 
-Use [`box`](http://wikimapia.org/api#oldbox) API function to get the number of features in your area of interest.
+Use [`box`](http://wikimapia.org/api#oldbox){target='_blank'} API function to get the number of features in your area of interest.
 
 ```{r estimate_n, eval=TRUE}
 wm <- wm_get_from_bbox(x = bbox, get_location = FALSE, meta_only = TRUE)
-# wm <- wm_get_from_bbox(x = bbox, get_location = F, wm_api_key = "XXXXXXX", object_count_only = T) # use with your own API key to perform more frequent requests and avoid the warning message
 wm$found
 ```
 
@@ -92,7 +102,6 @@ There are `page` and `count` parameters in the Wikimapia API, but you cannot req
 ```{r subdivide_bbox, eval=TRUE}
 small_bboxes <- subdivide_bbox(x = bbox, bbox_cell_size = 0.1, return_bbox_or_sf = "both")
 plot(small_bboxes$sf$geometry)
-str(small_bboxes, max.level = 1)
 ```
 
 In this example the bounding box cell size is in degrees (need to somehow fix that to work with meters across the globe). Default of 0.045 degrees is reasonably large, roughly equivalent to 2845x5010 meters. It has proved to fit < 10 000 objects per cell in Moscow, where the density of objects is quite high. For less object-dense cities you may be able to get away with larger grid of bounding boxes.
@@ -103,12 +112,10 @@ This is not ideal and it would be more convenient to create this subdivision usi
 
 Just to be sure that every bounding box that we generated has <= 10 000 objects, let us query all the bounding boxes. For the current example with `r length(small_bboxes$bbox)` it will take about `r length(small_bboxes$bbox)/2` minutes, as with "example" API key the cool-down is about 30 seconds.
 
-```{r estimate_subdivided_n, cache=TRUE, message=FALSE, warning=FALSE}
-objects_in_bboxes <- list()
-for( i in 1:length(small_bboxes$bbox)){
-  Sys.sleep(30) # wait for API required interval, sleep goes before the function itself for the map to correctly collect values in the list
-    objects_in_bboxes[[i]] <- wm_get_from_bbox(x = small_bboxes$bbox[[i]], get_location = FALSE) # get objects in every bbox, but no need to get the location for now
-}
+```{r estimate_subdivided_n, cache=FALSE, message=FALSE, warning=FALSE}
+# get objects in every bbox, but no need to get the location for now
+objects_in_bboxes <- small_bboxes$bbox %>% purrr::map(
+  ~wm_get_from_bbox(x = .x, get_location = FALSE), .progress = T )
 ```
 
 Now we look at the histogram of the number of objects in the small bounding boxes and the maximum value:
@@ -119,15 +126,15 @@ max(n_by_bbox)
 hist(n_by_bbox)
 ```
 
-Since the maximum is well within 10 000, we can proceed to collect the objects IDs and then download attributes for individual features. We have to download the detailed objects features one-by-one as [`box`](http://wikimapia.org/api#oldbox) API only returns object ID, name and URL. So the strategy for getting all object details is to make a list of object IDs using [`box`](http://wikimapia.org/api#oldbox) API and then use [`place.getbyid`](http://wikimapia.org/api#placegetbyid).
+Since the maximum is well within 10 000, we can proceed to collect the objects IDs and then download attributes for individual features. We have to download the detailed objects features one-by-one as [`box`](http://wikimapia.org/api#oldbox){target='_blank'} API only returns object ID, name and URL. So the strategy for getting all object details is to make a list of object IDs using [`box`](http://wikimapia.org/api#oldbox){target='_blank'} API and then use [`place.getbyid`](http://wikimapia.org/api#placegetbyid){target='_blank'}.
 
 
 #### Create a list of IDs to fetch
 
-```{r id_list, eval=TRUE, cache=TRUE}
+```{r id_list, eval=TRUE, cache=FALSE}
 id_list <- objects_in_bboxes %>%
   purrr::map(~ .x$df$id) %>% # pull object IDs from individual bbox query results data.frames
-  do.call(c, .) # bind together
+  unlist() # bind together
 
 str(id_list)
 head(id_list)
@@ -137,11 +144,11 @@ Now we have a list of `r length(id_list)` object IDs that we want to get the det
 
 #### Get detailed data for Wikimapia objects
 
-Let's take just 3 first objects for this example. It will take 1.5 minutes to fetch them with all the details using the example API.
+Let's take just 3 first objects for this example. It will take up to 1.5 minutes to fetch them with all the details using the 'example' API.
 
-```{r get_indiv_objects, cache=TRUE, message=FALSE, warning=FALSE}
+```{r get_indiv_objects, cache=FALSE, message=FALSE, warning=FALSE}
 short_list <- id_list[1:3]
-wm_objects <- wm_get_by_id(x = short_list, wm_api_key = "example")
+wm_objects <- wm_get_by_id(ids = short_list)
 ```
 
 
@@ -166,7 +173,7 @@ names(wm_objects)
 
 ##### Most of the details are currently in a nested list for every object
 
-You can use [purrr](https://github.com/tidyverse/purrr) and/or [rlist](https://github.com/renkun-ken/rlist) packages to pull any of the details from these nested lists.
+You can use [purrr](https://github.com/tidyverse/purrr){target='_blank'} and/or [rlist](https://github.com/renkun-ken/rlist){target='_blank'} packages to pull any of the details from these nested lists.
 
 ```{r obj_details}
 str(wm_objects$details[[1]], max.level = 1)
