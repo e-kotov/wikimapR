@@ -10,7 +10,7 @@
 #'
 #' @param n_per_page This is a variable that determines the number of results per page. 100 is default (5 min, 100 max). This is `count` parameter in Wikimapia terminilogy, but different name is used here so that it does not conflict with the `dplyr::count()` function.
 #'
-#' @param language Wikimapia language to retrieve. This is specified language in ISO 639-1 format. Default language is 'ru'.
+#' @param language Wikimapia language to retrieve. This is specified language in ISO 639-1 format. Default language is 'en'.
 #'
 #' @param category This is wikimapia category code: category=17 - Shop, category=203 - School etc. (a detailed list will be published later) or category text query in UTF-8: category=School, category=Church etc. Default is NULL to get all categories.
 #'
@@ -23,11 +23,17 @@
 #' @return If `meta_only = FALSE` returns a list with data.frame of object attributes (and object geometry if `get_location = TRUE`). If `meta_only = TRUE` only returns metadata of the responce: the number of objects in the bounding box (`found`), version, language, current page, current `n_per_page`.
 #' If `get_location = TRUE` returns a list object with `sf polygons` with all object attributes, `sf points` with all object attributes (the centroids), and also the metadata described above.
 #'
-#' @import purrr httr dplyr
+#' @import purrr httr dplyr sf
 #'
 #' @export
-wm_get_from_bbox <- function(x, page = 1, n_per_page = 100, language = "ru", category = NULL,
-                             get_location = TRUE, wm_api_key = "example", meta_only = FALSE){
+wm_get_from_bbox <- function(x,
+                             page = 1,
+                             n_per_page = 100,
+                             language = "en",
+                             category = NULL,
+                             get_location = TRUE,
+                             wm_api_key = getOption("wikimapia_api_key", default = "example"),
+                             meta_only = FALSE){
 
   if ( wm_api_key == "example" ){
     warning("Using 'example' API key. This key can only be used for testing. The interval for using this key is 30 seconds. Get your own API key at http://wikimapia.org/api?action=create_key .")
@@ -59,7 +65,7 @@ wm_get_from_bbox <- function(x, page = 1, n_per_page = 100, language = "ru", cat
     if( wm_api_key == "example" ) {
       Sys.sleep(30)
     } else {
-      Sys.sleep(3)
+      Sys.sleep(3) # the default 'up to 100 requests per 5 minutes' for Wikimapia API Keys
     }
     print("Retrying...")
     response <- wikimapR:::safe_GET(request_url)
