@@ -10,7 +10,6 @@ Description: Download and import of Wikimapia data as 'sf'
     objects.  Wikimapia data is retrieved via the Wikimapia API and
     converted to `sf` objects retaining all recevied fields.
 Date: 2023-05-14
-Affiliation: National Research University Higher School of Economics
 Depends: R (>= 3.1.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
