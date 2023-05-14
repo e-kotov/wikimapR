@@ -1,0 +1,6 @@
+url: ~
+template:
+  bootstrap: 5
+news:
+  one_page: true
+  cran_dates: false
