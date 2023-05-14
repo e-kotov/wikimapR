@@ -8,10 +8,10 @@ wm_get_from_bbox(
   x,
   page = 1,
   n_per_page = 100,
-  language = "ru",
+  language = "en",
   category = NULL,
   get_location = TRUE,
-  wm_api_key = "example",
+  wm_api_key = getOption("wikimapia_api_key", default = "example"),
   meta_only = FALSE
 )
 }
@@ -22,7 +22,7 @@ wm_get_from_bbox(
 
 \item{n_per_page}{This is a variable that determines the number of results per page. 100 is default (5 min, 100 max). This is `count` parameter in Wikimapia terminilogy, but different name is used here so that it does not conflict with the `dplyr::count()` function.}
 
-\item{language}{Wikimapia language to retrieve. This is specified language in ISO 639-1 format. Default language is 'ru'.}
+\item{language}{Wikimapia language to retrieve. This is specified language in ISO 639-1 format. Default language is 'en'.}
 
 \item{category}{This is wikimapia category code: category=17 - Shop, category=203 - School etc. (a detailed list will be published later) or category text query in UTF-8: category=School, category=Church etc. Default is NULL to get all categories.}
 

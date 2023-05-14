@@ -5,16 +5,16 @@
 \title{Get Wikimapia Objects by ID}
 \usage{
 wm_get_by_id(
-  x,
-  language = "ru",
-  wm_api_key = "example",
+  ids,
+  language = "en",
+  wm_api_key = getOption("wikimapia_api_key", default = "example"),
   data_blocks = "main,geometry,edit,location,attached,photos,comments,translate"
 )
 }
 \arguments{
-\item{x}{a numeric or characted vector of length 1 with Wikimapia object ID to fetch. You can get a list of objects to fetch using \link[wikimapR]{wm_get_from_bbox}}
+\item{ids}{a numeric or character vector with Wikimapia object IDs to fetch. You can get a list of objects to fetch using \link[wikimapR]{wm_get_from_bbox}}
 
-\item{language}{Wikimapia language to retrieve. This is specified language in ISO 639-1 format. Default language is 'ru'.}
+\item{language}{Wikimapia language to retrieve. This is specified language in ISO 639-1 format. Default language is 'en'.}
 
 \item{wm_api_key}{Your wikimapia API Key. If not specified, the default 'example' key is used, however it is limited to about 1 request per 30 seconds and is for testing purposes only.}
 
