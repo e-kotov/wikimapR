@@ -296,23 +296,25 @@ str(wm_objects$details[[1]], max.level = 1)
 ### Citation
 
 ``` r
-citation ("wikimapR")
-#> To cite package 'wikimapR' in publications use:
-#> 
-#>   Kotov E (2023). _wikimapR: Import Wikimapia Data as Simple Features
-#>   via API_. R package version 0.1.2,
-#>   <https://github.com/e-kotov/wikimapR/>.
-#> 
-#> A BibTeX entry for LaTeX users is
-#> 
-#>   @Manual{,
-#>     title = {wikimapR: Import Wikimapia Data as Simple Features via API},
-#>     author = {Egor Kotov},
-#>     year = {2023},
-#>     note = {R package version 0.1.2},
-#>     url = {https://github.com/e-kotov/wikimapR/},
-#>   }
+citation("wikimapR")
+print(citation("wikimapR"), bibtex=TRUE)
 ```
+
+To cite wikimapR in publications, please use:
+
+> Kotov (2018). wikimapR: Import Wikimapia Data as Simple Features via
+> API. DOI: 10.5281/zenodo.3459878.
+> <https://github.com/e-kotov/wikimapR>
+
+A BibTeX entry for LaTeX users is:
+
+      @Manual{,
+        title = {wikimapR: Import Wikimapia Data as Simple Features via API},
+        author = {Egor Kotov},
+        doi = {10.5281/zenodo.3459878},
+        year = {2018},
+        url = {https://github.com/e-kotov/wikimapR},
+      }
 
 ### License
 
