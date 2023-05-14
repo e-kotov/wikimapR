@@ -302,7 +302,7 @@ print(citation("wikimapR"), bibtex=TRUE)
 
 To cite wikimapR in publications, please use:
 
-> Kotov (2018). wikimapR: Import Wikimapia Data as Simple Features via
+> Kotov E. (2018). wikimapR: Import Wikimapia Data as Simple Features via
 > API. DOI: 10.5281/zenodo.3459878.
 > <https://github.com/e-kotov/wikimapR>
 

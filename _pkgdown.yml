@@ -1,7 +1,7 @@
 url: http://www.ekotov.pro/wikimapR/
 template:
   bootstrap: 5
-  package: pkgdown4gdpr
+  # package: pkgdown4gdpr
   includes:
     in_header: |
        <!-- counter.dev analytics -->
@@ -11,3 +11,6 @@ template:
 news:
   one_page: true
   cran_dates: false
+authors:
+  Egor Kotov:
+    href: "https://www.ekotov.pro"

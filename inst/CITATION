@@ -7,7 +7,7 @@ citEntry(
   doi      = "10.5281/zenodo.3459878",
   year     = "2018",
   url      = "https://github.com/e-kotov/wikimapR",
-  textVersion = paste("Kotov (2018). wikimapR: Import Wikimapia Data as Simple Features via API. DOI: 10.5281/zenodo.3459878. https://github.com/e-kotov/wikimapR"))
+  textVersion = paste("Kotov E. (2018). wikimapR: Import Wikimapia Data as Simple Features via API. DOI: 10.5281/zenodo.3459878. https://github.com/e-kotov/wikimapR"))
 
 note <- sprintf("R package version %s", meta$Version)
 

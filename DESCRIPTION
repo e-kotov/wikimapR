@@ -4,7 +4,8 @@ Title: Import Wikimapia Data as Simple Features via API
 Version: 0.1.2
 Authors@R: c(
     person("Egor", "Kotov", email = "kotov.egor@gmail.com",
-                  role = c("aut", "cre"), comment = c(ORCID = "0000-0001-6690-5345")))
+                  role = c("aut", "cre"),
+                  comment = c(ORCID = "0000-0001-6690-5345") ))
 Maintainer: Egor Kotov <kotov.egor@gmail.com>
 Description: Download and import of Wikimapia data as 'sf'
     objects.  Wikimapia data is retrieved via the Wikimapia API and
