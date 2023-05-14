@@ -51,20 +51,6 @@ set_wikimapia_api_key <- function(api_key) {
   invisible(NULL)
 }
 
-#' Clear Wikimapia API keys
-#'
-#' Clears the API keys
-#'
-#' @references mapdeck https://github.com/SymbolixAU/mapdeck code related to API key handling was used as a template.
-#'
-#' @export
-clear_wikimapia_api_keys <- function() {
-
-  options <- list( wikimapia_api_key = "example" )
-  attr(options, "class") <- "wikimapia_api"
-  options(wikimapia_api_key = options)
-
-}
 
 
 
