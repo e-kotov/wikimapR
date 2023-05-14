@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/news/index.html</loc>
   </url>
   <url>
-    <loc>/paper.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/paper.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/set_wikimapia_api_key.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/reference/set_wikimapia_api_key.html</loc>
   </url>
   <url>
-    <loc>/reference/subdivide_bbox.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/reference/subdivide_bbox.html</loc>
   </url>
   <url>
-    <loc>/reference/wikimapR.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/reference/wikimapR.html</loc>
   </url>
   <url>
-    <loc>/reference/wm_get_by_id.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/reference/wm_get_by_id.html</loc>
   </url>
   <url>
-    <loc>/reference/wm_get_by_id_single.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/reference/wm_get_by_id_single.html</loc>
   </url>
   <url>
-    <loc>/reference/wm_get_from_bbox.html</loc>
+    <loc>http://www.ekotov.pro/wikimapR/reference/wm_get_from_bbox.html</loc>
   </url>
 </urlset>

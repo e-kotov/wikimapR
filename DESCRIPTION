@@ -20,6 +20,7 @@ Imports:
     httr,
     sf,
     progress
-URL: https://github.com/e-kotov/wikimapR/
+URL: https://github.com/e-kotov/wikimapR/,
+    http://www.ekotov.pro/wikimapR/
 BugReports: https://github.com/e-kotov/wikimapR/issues
 RoxygenNote: 7.2.3

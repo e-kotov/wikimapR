@@ -14,6 +14,7 @@ converted to `sf` objects retaining all recevied fields.
 Useful links:
 \itemize{
   \item \url{https://github.com/e-kotov/wikimapR/}
+  \item \url{http://www.ekotov.pro/wikimapR/}
   \item Report bugs at \url{https://github.com/e-kotov/wikimapR/issues}
 }
 
