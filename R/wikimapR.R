@@ -29,3 +29,42 @@ construct_polygon <- function(points_list) {
 
   return(polygon)
 }
+
+#' Set Wikimapia API Key
+#'
+#' Sets an API key to make it available for all wikimapR functions calls. See details
+#'
+#' @param api_key Wikimapia API key
+#'
+#' @details
+#' Use \code{set_wikimapia_api_key} to make API keys available for all Wikimapia API
+#' calls in a session so you don't have to keep specifying the \code{wm_api_key} argument
+#' each time.
+#'
+#' @references mapdeck https://github.com/SymbolixAU/mapdeck code related to API key handling was used as a template.
+#'
+#' @export
+set_wikimapia_api_key <- function(api_key) {
+  options <- api_key
+  class(options) <- "wikimapia_api"
+  options(wikimapia_api_key = options)
+  invisible(NULL)
+}
+
+#' Clear Wikimapia API keys
+#'
+#' Clears the API keys
+#'
+#' @references mapdeck https://github.com/SymbolixAU/mapdeck code related to API key handling was used as a template.
+#'
+#' @export
+clear_wikimapia_api_keys <- function() {
+
+  options <- list( wikimapia_api_key = "example" )
+  attr(options, "class") <- "wikimapia_api"
+  options(wikimapia_api_key = options)
+
+}
+
+
+
