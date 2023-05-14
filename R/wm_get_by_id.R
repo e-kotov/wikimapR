@@ -16,8 +16,6 @@
 #'
 #' @import dplyr progress sf
 #'
-#' @importFrom rlist list.stack
-#'
 #' @export
 wm_get_by_id <- function(ids,
                          language = "en",
@@ -27,7 +25,7 @@ wm_get_by_id <- function(ids,
   pb <- progress::progress_bar$new(
     format = "[:bar] :percent",
     total = length(ids),
-    clear = FALSE,
+    clear = FALSE
   )
 
   wm_objects <- list()
@@ -42,7 +40,7 @@ wm_get_by_id <- function(ids,
       id = ids[[i]], language = language, wm_api_key = wm_api_key, data_blocks = data_blocks)
   }
 
-  wm_sf_all <- rlist::list.stack(wm_objects, fill = T) %>% sf::st_sf()
+  wm_sf_all <- wm_objects %>% purrr::map_dfr(~.x, .id = NULL) %>% sf::st_sf()
 
   return(wm_sf_all)
 }
@@ -127,5 +125,4 @@ wm_get_by_id_single <- function(id,
   wm_sf_with_nested_cols <- wm_sf %>% mutate(details = list(response_content_nested))
 
   return(wm_sf_with_nested_cols)
-
 }
